@@ -77,7 +77,7 @@
         </div>
     </div>
 	<!-- Preloading / End -->
-    <?php if( is_front_page() ){ ?>
+    <?php //if( is_front_page() ){ ?>
     <!-- Slider
     ======================================================================== -->
     <div class="slider-wrapper">
@@ -87,7 +87,51 @@
     
     <!-- Header
     ======================================================================== -->
-    <header id="header">
+    <?php 
+        $color      = oneengine_option('header_blog_color'); 
+        $img        = oneengine_option('header_blog_img', false, 'url');
+        $repeat     = oneengine_option('header_blog_repeat');
+        $position   = oneengine_option('header_blog_position');
+        $parallax   = oneengine_option('header_blog_parallax');
+        $cover      = oneengine_option('header_blog_cover');
+        
+        $bg_repeat  = '';
+        if( $repeat == 1 || $repeat == true){
+            $bg_repeat = 'background-repeat:no-repeat;';
+        }else $bg_repeat = 'background-repeat:repeat;';
+        
+        $bg_cover = '';
+        if( $cover == 1 || $cover == true){
+            $bg_cover = 'background-size:cover;';
+        }else $bg_cover = '';
+        
+        $bg_img = '';
+        if( $img ){
+            $bg_img = 'background-image:url('.oneengine_option('header_blog_img', false, 'url').');';
+        }else $bg_img = '';
+        
+        $img        = ( ! empty ( $img ) )      ? ''.$bg_img.'' : '';
+        $color      = ( ! empty ( $color ) )    ? 'background-color:'. $color .';' : '';
+        $repeat     = ( ! empty ( $repeat ) )   ? ''. $bg_repeat .'' : '';
+        $position   = ( ! empty ( $position ) ) ? 'background-position:'. $position .';' : '';
+        $cover      = ( ! empty ( $cover ) )    ? ''. $bg_cover .'' : '';
+        $parallax   = ( ! empty ( $parallax ) ) ? 'background-attachment: fixed;': '';
+        
+        
+        /** Style Container */
+        $style = ( 
+            ! empty( $img ) ||
+            ! empty( $color ) || 
+            ! empty( $repeat ) ||
+            ! empty( $cover ) ||
+            ! empty( $parallax ) ) ? 
+                sprintf( '%s %s %s %s %s', $img, $color, $repeat, $cover, $parallax ) : '';
+        $css = '';
+        if ( ! empty( $style ) ) {          
+            $css = 'style="'. $style .'" ';
+        }
+    ?>
+    <header id="header" <?php echo $css ?>>
     	<div class="container" >
         	<div class="row">
             	<div class="col-md-3 col-xs-3"></div>
@@ -116,115 +160,68 @@
                     <nav class="menu-responsive"> 
                     </nav>
                 </div>
-        	</div>
+        	</div> <!-- row -->
+
+            <div class="row">
+                <div class="col-md-12"></div>
+                
+                <?php 
+                    $color_title        = oneengine_option('header_blog_title_color'); 
+                    $color_sub_title    = oneengine_option('header_blog_subtitle_color');
+                        
+                    $color_title        = ( ! empty ( $color_title ) )      ? 'color:'. $color_title .';' : '';
+                    $color_sub_title    = ( ! empty ( $color_sub_title ) )  ? 'color:'. $color_sub_title .';' : '';
+                    
+                    /** Style Container */
+                    $title_color = ( 
+                        ! empty( $color_title ) ) ? 
+                            sprintf( '%s', $color_title) : '';
+                    $css_title_color = '';
+                    if ( ! empty( $title_color ) ) {            
+                        $css_title_color = 'style="'. $title_color .'" ';
+                    }
+                    
+                    $sub_title_color = ( 
+                        ! empty( $color_sub_title ) ) ? 
+                            sprintf( '%s', $color_sub_title) : '';
+                    $css_sub_title_color = '';
+                    if ( ! empty( $sub_title_color ) ) {            
+                        $css_sub_title_color = 'style="'. $sub_title_color .'" ';
+                    }
+                ?>
+                <div class="animation-wrapper col-md-12">
+                    <div class="heading-title-wrapper blog-page">
+                        <h2 class="title" <?php echo $css_title_color ?>>
+                            <!-- Logo
+                            ======================================================================== -->
+                            <div calss="logo-wrapper">
+                                <div class="logo">
+                                     <a href="<?php echo home_url(); ?>">
+                                        <?php 
+                                            $top = $left = $width = '' ;
+                                            if( oneengine_option('logo_top') != '' )$top    = 'top:'.oneengine_option('logo_top').'px;' ;
+                                            if( oneengine_option('logo_left') != '' )$left  = 'left:'.oneengine_option('logo_left').'px;';
+                                            if( oneengine_option('logo_width') != '' )$width = 'width:'.oneengine_option('logo_width').'px;';
+                                            if( oneengine_option('custom_logo', false, 'url') !== '' ){
+                                                echo '<div class="logo-wrapper" style="'.$width.$left.$top.'"><img src="'. oneengine_option('custom_logo', false, 'url') .'" alt="'.oneengine_option('header_blog_title').'" /></div>';
+                                            }else{
+                                        ?>
+                                        <?php echo oneengine_option('header_blog_title') ?>
+                                        <?php } ?>
+                                     </a>
+                                </div>  
+                            </div>
+                            <!-- Logo / End -->
+                        </h2>
+                        <span class="sub-title" <?php echo $css_sub_title_color ?>><?php echo oneengine_option('header_blog_subtitle') ?></span>
+                    </div>
+                </div>
+            </div>
         </div>
     </header>
 	<!-- Header / End -->
 
-	<?php } ?>
-<!-- Blog Header
-======================================================================== -->
-<div class="blog-header-wrapper">
-    <?php 
-        $color      = oneengine_option('header_blog_color'); 
-        $img        = oneengine_option('header_blog_img', false, 'url');
-        $repeat     = oneengine_option('header_blog_repeat');
-        $parallax   = oneengine_option('header_blog_parallax');
-        $cover      = oneengine_option('header_blog_cover'); 
-        
-        $bg_repeat  = '';
-        if( $repeat == 1 || $repeat == true){
-            $bg_repeat = 'background-repeat:no-repeat;';
-        }else $bg_repeat = 'background-repeat:repeat;';
-        
-        $bg_cover = '';
-        if( $cover == 1 || $cover == true){
-            $bg_cover = 'background-size:cover;';
-        }else $bg_cover = '';
-        
-        $bg_img = '';
-        if( $img ){
-            $bg_img = 'background-image:url('.oneengine_option('header_blog_img', false, 'url').');';
-        }else $bg_img = '';
-        
-        $img        = ( ! empty ( $img ) )      ? ''.$bg_img.'' : '';
-        $color      = ( ! empty ( $color ) )    ? 'background-color:'. $color .';' : '';
-        $repeat     = ( ! empty ( $repeat ) )   ? ''. $bg_repeat .';' : '';
-        $cover      = ( ! empty ( $cover ) )    ? ''. $bg_cover .'' : '';
-        $parallax   = ( ! empty ( $parallax ) ) ? 'background-attachment: fixed;': '';
-        
-        
-        /** Style Container */
-        $style = ( 
-            ! empty( $img ) ||
-            ! empty( $color ) || 
-            ! empty( $repeat ) ||
-            ! empty( $cover ) ||
-            ! empty( $parallax ) ) ? 
-                sprintf( '%s %s %s %s %s', $img, $color, $repeat, $cover, $parallax ) : '';
-        $css = '';
-        if ( ! empty( $style ) ) {          
-            $css = 'style="'. $style .'" ';
-        }
-    ?>
-    <div class="blog-header-img" <?php echo $css ?>></div>
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12"></div>
-            
-            <?php 
-                $color_title        = oneengine_option('header_blog_title_color'); 
-                $color_sub_title    = oneengine_option('header_blog_subtitle_color');
-                    
-                $color_title        = ( ! empty ( $color_title ) )      ? 'color:'. $color_title .';' : '';
-                $color_sub_title    = ( ! empty ( $color_sub_title ) )  ? 'color:'. $color_sub_title .';' : '';
-                
-                /** Style Container */
-                $title_color = ( 
-                    ! empty( $color_title ) ) ? 
-                        sprintf( '%s', $color_title) : '';
-                $css_title_color = '';
-                if ( ! empty( $title_color ) ) {            
-                    $css_title_color = 'style="'. $title_color .'" ';
-                }
-                
-                $sub_title_color = ( 
-                    ! empty( $color_sub_title ) ) ? 
-                        sprintf( '%s', $color_sub_title) : '';
-                $css_sub_title_color = '';
-                if ( ! empty( $sub_title_color ) ) {            
-                    $css_sub_title_color = 'style="'. $sub_title_color .'" ';
-                }
-            ?>
-            <div class="animation-wrapper col-md-12">
-                <div class="heading-title-wrapper blog-page">
-                    <h2 class="title" <?php echo $css_title_color ?>>
-                        <!-- Logo
-                        ======================================================================== -->
-                        <div calss="logo-wrapper">
-                            <div class="logo">
-                                 <a href="<?php echo home_url(); ?>">
-                                    <?php 
-                                        $top = $left = $width = '' ;
-                                        if( oneengine_option('logo_top') != '' )$top    = 'top:'.oneengine_option('logo_top').'px;' ;
-                                        if( oneengine_option('logo_left') != '' )$left  = 'left:'.oneengine_option('logo_left').'px;';
-                                        if( oneengine_option('logo_width') != '' )$width = 'width:'.oneengine_option('logo_width').'px;';
-                                        if( oneengine_option('custom_logo', false, 'url') !== '' ){
-                                            echo '<div class="logo-wrapper" style="'.$width.$left.$top.'"><img src="'. oneengine_option('custom_logo', false, 'url') .'" alt="'.oneengine_option('header_blog_title').'" /></div>';
-                                        }else{
-                                    ?>
-                                    <?php echo oneengine_option('header_blog_title') ?>
-                                    <?php } ?>
-                                 </a>
-                            </div>  
-                        </div>
-                        <!-- Logo / End -->
-                    </h2>
-                    <span class="sub-title" <?php echo $css_sub_title_color ?>><?php echo oneengine_option('header_blog_subtitle') ?></span>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+	<?php //} //is_front_page ?>
+
 <!-- End Blog Header -->
 <div class="clearfix"></div>

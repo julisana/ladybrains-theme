@@ -348,6 +348,25 @@ $sections[] = array(
 			'options' => array('no-repeat' => __('No Repeat','oneengine'), 'repeat' => __('Repeat','oneengine')),
 			'default' => '1'
 		),
+		array(
+			'id'       => 'header_blog_position',
+			'type'     => 'select',
+			'title'    => __('Background Image Position', 'oneengine'),
+			'subtitle' => __('Select the position of your background image', 'oneengine'),
+			//Must provide key => value pairs for options
+			'options' => array(
+				'left top' => __('Left Top','oneengine'),
+				'left center' => __('Left Center','oneengine'),
+				'left bottom' => __('Left Bottom','oneengine'),
+				'center top' => __('Center Top','oneengine'),
+				'center center' => __('Center Center','oneengine'),
+				'center bottom' => __('Center Bottm','oneengine'),
+				'right top' => __('Right Top','oneengine'),
+				'right center' => __('Right Center','oneengine'),
+				'right bottom' => __('Right Bottom','oneengine'),
+			),
+			'default' => '1'
+		),
 		
 		array(
 			'id'=>'header_blog_parallax',
