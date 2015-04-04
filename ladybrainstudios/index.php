@@ -1,50 +1,9 @@
 <?php 
-global $post,$wp_query; 
-get_header();
+    global $post,$wp_query; 
+    get_header();
 ?>
-
 <!-- Container
 ======================================================================== -->
-<div class="about-container">
-    <div class="row">
-        <div class="col-md-1"></div>
-        <div class="col-md-10 about">
-            <?php
-                $aboutPage = get_page_by_path('about');
-                if (!empty($aboutPage)) {
-                    echo "<pre>";
-                    print_r($aboutPage);
-                    echo "</pre>";
-            ?>
-            <h1 class="title-blog"><a href="<?php echo $aboutPage->permaLink; ?>"><?php echo $aboutPage->post_title; ?></a></h1>
-            <div class="clearfix"></div>
-            <div class="et-post-content">
-                <?php echo $aboutPage->post_content; ?>
-            </div>
-            <div class="clearfix"></div>
-            <!--<ul>
-                <li class="active">
-                    <a href="<?php if( get_option( 'show_on_front' ) == 'page' ) echo get_permalink( get_option('page_for_posts' ) );
-                    else echo bloginfo('url'); ?>">
-                        <?php _e('All','oneengine') ?>
-                    </a>
-                </li>
-                <?php
-                    $categories = get_categories( array('hide_empty' => 0) );
-                    foreach ($categories as $category) {
-                ?>
-                <li>
-                    <a href="<?php echo get_category_link( $category );?>">
-                        <?php echo $category->name ?>
-                    </a>
-                </li>
-                <?php } ?>
-            </ul>-->
-            <?php } ?>
-        </div>
-        <div class="col-md-1"></div>
-    </div>
-</div>
 <div class="site-inner">
     <div class="wrap">
     	<div class="container">
@@ -104,6 +63,22 @@ get_header();
     			<input type="hidden" id="current_page" value="<?php echo get_query_var( 'paged' ) ? get_query_var( 'paged' ) : 1 ?>">
 				<input type="hidden" id="max_page" value="<?php echo $wp_query->max_num_pages ?>">	
     		</div>
+
+            <div class="row">
+                <div class="col-md-1"></div>
+                <div class="page-wrapper col-md-10" style="margin: 10px 0;">
+                    <div class="row" style="background-color:rgba(0,0,0,.5); background-repeat:no-repeat; background-size:cover; background-attachment: fixed;padding:15px;">
+                    <?php $about = get_page_by_path( 'about' ); ?>
+                        <h1><?php echo $about->post_title; ?></h1>
+                        <div class="clearfix"></div>
+                        <div>
+                            <?php echo $about->post_content; ?>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+                <div class="col-md-1"></div>
+            </div>
     	</div>
     </div>
 </div>
