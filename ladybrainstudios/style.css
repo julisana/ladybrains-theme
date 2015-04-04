@@ -1279,9 +1279,9 @@ header{
 .logo{
 	position:relative;
 }
-.logo-wrapper{
+/*.logo-wrapper{
 	position:relative;
-}
+}*/
 .logo a{
 	display:inline-block;
 }
@@ -1371,7 +1371,7 @@ header{
 }
 .heading-title-wrapper span.sub-title{
 	color: #5f6f81;
-	font-size: 18px;
+	font-size: 20px;
 	line-height: 1.7;
 	font-weight: 300;
 }

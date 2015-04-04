@@ -33,98 +33,105 @@ the_post();
 <!-- Blog Header
 ======================================================================== -->
 <div class="blog-header-wrapper">
-	<?php 
-		$color		= oneengine_option('header_blog_color'); 
-		$img		= has_post_thumbnail($post->ID) ? wp_get_attachment_url( get_post_thumbnail_id($post->ID) ) : oneengine_option('header_blog_img', false, 'url');
-		$repeat		= oneengine_option('header_blog_repeat');
-		$parallax	= oneengine_option('header_blog_parallax');
-		$cover		= oneengine_option('header_blog_cover'); 
-		
-		$bg_repeat  = '';
-		if( $repeat == 1 || $repeat == true){
-			$bg_repeat = 'background-repeat:no-repeat;';
-		}else $bg_repeat = 'background-repeat:repeat;';
-		
-		$bg_cover = '';
-		if( $cover == 1 || $cover == true){
-			$bg_cover = 'background-size:cover;';
-		}else $bg_cover = '';
-		
-		$bg_img = '';
-		if( $img ){
-			$bg_img = 'background-image:url('.$img.');';
-		}else $bg_img = '';
-		
-		$img		= ( ! empty ( $img ) ) 		? ''.$bg_img.'' : '';
-		$color		= ( ! empty ( $color ) )  	? 'background-color:'. $color .';' : '';
-		$repeat		= ( ! empty ( $repeat ) ) 	? ''. $bg_repeat .'' : '';
-		$cover		= ( ! empty ( $cover ) ) 	? ''. $bg_cover .'' : '';
-		$parallax 	= ( ! empty ( $parallax ) ) ? 'background-attachment: fixed;': '';
-		
-		
-		/** Style Container */
-		$style = ( 
-			! empty( $img ) ||
-			! empty( $color ) || 
-			! empty( $repeat ) ||
-			! empty( $cover ) ||
-			! empty( $parallax ) ) ? 
-				sprintf( '%s %s %s %s %s', $img, $color, $repeat, $cover, $parallax ) : '';
-		$css = '';
-		if ( ! empty( $style ) ) {			
-			$css = 'style="'. $style .'" ';
-		}
-	?>
-	<div class="blog-header-img" <?php echo $css ?>></div>
+    <?php 
+        $color      = oneengine_option('header_blog_color'); 
+        $img        = oneengine_option('header_blog_img', false, 'url');
+        $repeat     = oneengine_option('header_blog_repeat');
+        $parallax   = oneengine_option('header_blog_parallax');
+        $cover      = oneengine_option('header_blog_cover'); 
+        
+        $bg_repeat  = '';
+        if( $repeat == 1 || $repeat == true){
+            $bg_repeat = 'background-repeat:no-repeat;';
+        }else $bg_repeat = 'background-repeat:repeat;';
+        
+        $bg_cover = '';
+        if( $cover == 1 || $cover == true){
+            $bg_cover = 'background-size:cover;';
+        }else $bg_cover = '';
+        
+        $bg_img = '';
+        if( $img ){
+            $bg_img = 'background-image:url('.oneengine_option('header_blog_img', false, 'url').');';
+        }else $bg_img = '';
+        
+        $img        = ( ! empty ( $img ) )      ? ''.$bg_img.'' : '';
+        $color      = ( ! empty ( $color ) )    ? 'background-color:'. $color .';' : '';
+        $repeat     = ( ! empty ( $repeat ) )   ? ''. $bg_repeat .';' : '';
+        $cover      = ( ! empty ( $cover ) )    ? ''. $bg_cover .'' : '';
+        $parallax   = ( ! empty ( $parallax ) ) ? 'background-attachment: fixed;': '';
+        
+        
+        /** Style Container */
+        $style = ( 
+            ! empty( $img ) ||
+            ! empty( $color ) || 
+            ! empty( $repeat ) ||
+            ! empty( $cover ) ||
+            ! empty( $parallax ) ) ? 
+                sprintf( '%s %s %s %s %s', $img, $color, $repeat, $cover, $parallax ) : '';
+        $css = '';
+        if ( ! empty( $style ) ) {          
+            $css = 'style="'. $style .'" ';
+        }
+    ?>
+    <div class="blog-header-img" <?php echo $css ?>></div>
     <div class="container">
         <div class="row">
-            <div class="col-md-12">
-                <!-- Logo
-                ======================================================================== -->
-                <div calss="logo-wrapper">
-                    <div class="logo">
-                         <a href="<?php echo home_url(); ?>">
-                            <?php 
-                                $top   = '' ;
-                                $left  = '' ;
-                                $width = '' ;
-                                if( oneengine_option('logo_top') != '' )$top    = 'top:'.oneengine_option('logo_top').'px;' ;
-                                if( oneengine_option('logo_left') != '' )$left  = 'left:'.oneengine_option('logo_left').'px;';
-                                if( oneengine_option('logo_width') != '' )$width = 'width:'.oneengine_option('logo_width').'px;';
-                                if( oneengine_option('custom_logo', false, 'url') !== '' ){
-                                    echo '<div class="logo-wrapper" style="'.$width.$left.$top.'"><img src="'. oneengine_option('custom_logo', false, 'url') .'" alt="'.get_bloginfo( 'name' ).'" /></div>';
-                                }else{
-                            ?>
-                                <div class="logo-img logo-white"><span>E</span></div>
-                            <?php } ?>
-                         </a>
-                    </div>  
+            <div class="col-md-12"></div>
+            
+            <?php 
+                $color_title        = oneengine_option('header_blog_title_color'); 
+                $color_sub_title    = oneengine_option('header_blog_subtitle_color');
+                    
+                $color_title        = ( ! empty ( $color_title ) )      ? 'color:'. $color_title .';' : '';
+                $color_sub_title    = ( ! empty ( $color_sub_title ) )  ? 'color:'. $color_sub_title .';' : '';
+                
+                /** Style Container */
+                $title_color = ( 
+                    ! empty( $color_title ) ) ? 
+                        sprintf( '%s', $color_title) : '';
+                $css_title_color = '';
+                if ( ! empty( $title_color ) ) {            
+                    $css_title_color = 'style="'. $title_color .'" ';
+                }
+                
+                $sub_title_color = ( 
+                    ! empty( $color_sub_title ) ) ? 
+                        sprintf( '%s', $color_sub_title) : '';
+                $css_sub_title_color = '';
+                if ( ! empty( $sub_title_color ) ) {            
+                    $css_sub_title_color = 'style="'. $sub_title_color .'" ';
+                }
+            ?>
+            <div class="animation-wrapper col-md-12">
+                <div class="heading-title-wrapper blog-page">
+                    <h2 class="title" <?php echo $css_title_color ?>>
+                        <!-- Logo
+                        ======================================================================== -->
+                        <div calss="logo-wrapper">
+                            <div class="logo">
+                                 <a href="<?php echo home_url(); ?>">
+                                    <?php 
+                                        $top = $left = $width = '' ;
+                                        if( oneengine_option('logo_top') != '' )$top    = 'top:'.oneengine_option('logo_top').'px;' ;
+                                        if( oneengine_option('logo_left') != '' )$left  = 'left:'.oneengine_option('logo_left').'px;';
+                                        if( oneengine_option('logo_width') != '' )$width = 'width:'.oneengine_option('logo_width').'px;';
+                                        if( oneengine_option('custom_logo', false, 'url') !== '' ){
+                                            echo '<div class="logo-wrapper" style="'.$width.$left.$top.'"><img src="'. oneengine_option('custom_logo', false, 'url') .'" alt="'.oneengine_option('header_blog_title').'" /></div>';
+                                        }else{
+                                    ?>
+                                    <?php echo oneengine_option('header_blog_title') ?>
+                                    <?php } ?>
+                                 </a>
+                            </div>  
+                        </div>
+                        <!-- Logo / End -->
+                    </h2>
+                    <span class="sub-title" <?php echo $css_sub_title_color ?>><?php echo oneengine_option('header_blog_subtitle') ?></span>
                 </div>
-                <!-- Logo / End -->
             </div>
         </div>
-    </div>
-    <div class="clearfix" style="height:115px;"></div>      
-    <div class="container single-blog-mobile">
-        <div class="row">
-            <div class="col-md-1 col-xs-2  single-blog-mobile et-post-data-left single-blog">
-                <a href="<?php echo home_url(); ?>" class="home-icon"><i class="fa fa-home"></i></a>
-                <span class="et-post-month"><?php the_time('M');?></span>
-                <span class="et-post-date"><?php the_time('d');?></span>
-                <a href="#" data-id="<?php echo $post->ID; ?>" class="et-like-post <?php echo is_like_post($post->ID); ?>">
-                    <span class="et-post-heart"><i class="fa fa-heart"></i><span class="count"><?php echo get_post_meta($post->ID, 'et_like_count', true) ? get_post_meta($post->ID, 'et_like_count', true) : 0; ?></span></span>
-                </a>
-            </div>
-            <div class="col-md-1 col-xs-2">
-                <div class="social-share single-blog-share">
-                    <ul class="social">
-                        <?php 
-                            echo $fb_share.$twitter_share.$google_share;
-                        ?> 
-                    </ul>
-                </div>
-            </div>
-         </div>
     </div>
 </div>
 <!-- end blog-header -->

@@ -95,7 +95,7 @@
                     ======================================================================== -->
                     <div calss="logo-wrapper">
                         <div class="logo">
-                             <a href="<?php echo home_url(); ?>">
+                            <!--<a href="<?php echo home_url(); ?>">
                                 <?php 
                                     $top   = '' ;
                                     $left  = '' ;
@@ -109,7 +109,7 @@
                                 ?>
                                     <div class="logo-img"><span>E</span></div>
                                 <?php } ?>
-                             </a>
+                            </a>-->
                         </div>  
                     </div>
                     <!-- Logo / End -->

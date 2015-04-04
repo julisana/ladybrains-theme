@@ -90,30 +90,30 @@
                 </div>
                 <div class="clearfix"></div>
                 <div class="list-contact-wrapper">
-					<?php if(oneengine_option('address_footer') != '') {?>
                     <div class="col-md-4">
-                        <div class="contact-wrapper">
-                            <span class="icon"><i class="fa fa-map-marker"></i></span>
-                            <p><?php echo nl2br(oneengine_option('address_footer')); ?></p>
-                        </div>
+                        <?php if(oneengine_option('address_footer') != '') {?>
+                            <div class="contact-wrapper">
+                                <span class="icon"><i class="fa fa-map-marker"></i></span>
+                                <p><?php echo nl2br(oneengine_option('address_footer')); ?></p>
+                            </div>
+                        <?php } ?>
                     </div>
-                    <?php } ?>
-                    <?php if(oneengine_option('phone_footer') != '') {?>
                     <div class="col-md-4">
-                        <div class="contact-wrapper">
-                            <span class="icon"><i class="fa fa-phone"></i></span>
-                            <p><?php echo nl2br(oneengine_option('phone_footer')); ?></p>
-                        </div>
+                        <?php if(oneengine_option('email_footer') != '') {?>
+                            <div class="contact-wrapper">
+                                <span class="icon"><i class="fa fa-envelope"></i></span>
+                                <p><?php echo nl2br(oneengine_option('email_footer')); ?></p>
+                            </div>
+                        <?php } ?>
                     </div>
-                    <?php } ?>
-                    <?php if(oneengine_option('email_footer') != '') {?>
                     <div class="col-md-4">
-                        <div class="contact-wrapper">
-                            <span class="icon"><i class="fa fa-envelope"></i></span>
-                            <p><?php echo nl2br(oneengine_option('email_footer')); ?></p>
-                        </div>
+                        <?php if(oneengine_option('phone_footer') != '') {?>
+                            <div class="contact-wrapper">
+                                <span class="icon"><i class="fa fa-phone"></i></span>
+                                <p><?php echo nl2br(oneengine_option('phone_footer')); ?></p>
+                            </div>
+                        <?php } ?>
                     </div>
-                    <?php } ?>
                 </div>
                 <div class="clearfix"></div>
                 <?php if(oneengine_option('contact_form') != '') {?>
@@ -151,7 +151,7 @@
 			<div class="copyright">
 				<?php echo nl2br(oneengine_option('copyright')); ?>
 				<br>
-				<a href="http://www.enginethemes.com/themes/oneengine" target="_blank">One page WordPress theme</a>. Designed by <a href="http://www.enginethemes.com"  target="_blank">EngineThemes</a>.
+				<!--<a href="http://www.enginethemes.com/themes/oneengine" target="_blank">One page WordPress theme</a>. Designed by <a href="http://www.enginethemes.com"  target="_blank">EngineThemes</a>.-->
 			</div>			
 		</div><!-- .site-info -->
 	</footer><!-- #colophon -->

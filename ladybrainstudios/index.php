@@ -50,30 +50,7 @@ get_header();
 	<div class="blog-header-img" <?php echo $css ?>></div>
     <div class="container">
         <div class="row">
-            <div class="col-md-12">
-                <!-- Logo
-                ======================================================================== -->
-                <div calss="logo-wrapper">
-                    <div class="logo">
-                         <a href="<?php echo home_url(); ?>">
-                            <?php 
-                                $top   = '' ;
-                                $left  = '' ;
-                                $width = '' ;
-                                if( oneengine_option('logo_top') != '' )$top    = 'top:'.oneengine_option('logo_top').'px;' ;
-                                if( oneengine_option('logo_left') != '' )$left  = 'left:'.oneengine_option('logo_left').'px;';
-                                if( oneengine_option('logo_width') != '' )$width = 'width:'.oneengine_option('logo_width').'px;';
-                                if( oneengine_option('custom_logo', false, 'url') !== '' ){
-                                    echo '<div class="logo-wrapper" style="'.$width.$left.$top.'"><img src="'. oneengine_option('custom_logo', false, 'url') .'" alt="'.get_bloginfo( 'name' ).'" /></div>';
-                                }else{
-                            ?>
-                                <div class="logo-img"><span>E</span></div>
-                            <?php } ?>
-                         </a>
-                    </div>  
-                </div>
-                <!-- Logo / End -->
-            </div>
+            <div class="col-md-12"></div>
             
             <?php 
 				$color_title		= oneengine_option('header_blog_title_color'); 
@@ -100,9 +77,29 @@ get_header();
 				}
 			?>
             <div class="animation-wrapper col-md-12">
-                <div class="heading-title-wrapper blog-page" style="color">
-                    <h2 class="title" <?php echo $css_title_color ?>><?php echo oneengine_option('header_blog_title') ?></h2>
-                    <span class="line-title" style="background-color:#cc467c"></span>
+                <div class="heading-title-wrapper blog-page">
+                    <h2 class="title" <?php echo $css_title_color ?>>
+                        <!-- Logo
+                        ======================================================================== -->
+                        <div calss="logo-wrapper">
+                            <div class="logo">
+                                 <a href="<?php echo home_url(); ?>">
+                                    <?php 
+                                        $top = $left = $width = '' ;
+                                        if( oneengine_option('logo_top') != '' )$top    = 'top:'.oneengine_option('logo_top').'px;' ;
+                                        if( oneengine_option('logo_left') != '' )$left  = 'left:'.oneengine_option('logo_left').'px;';
+                                        if( oneengine_option('logo_width') != '' )$width = 'width:'.oneengine_option('logo_width').'px;';
+                                        if( oneengine_option('custom_logo', false, 'url') !== '' ){
+                                            echo '<div class="logo-wrapper" style="'.$width.$left.$top.'"><img src="'. oneengine_option('custom_logo', false, 'url') .'" alt="'.oneengine_option('header_blog_title').'" /></div>';
+                                        }else{
+                                    ?>
+                                    <?php echo oneengine_option('header_blog_title') ?>
+                                    <?php } ?>
+                                 </a>
+                            </div>  
+                        </div>
+                        <!-- Logo / End -->
+                    </h2>
                     <span class="sub-title" <?php echo $css_sub_title_color ?>><?php echo oneengine_option('header_blog_subtitle') ?></span>
                 </div>
             </div>
@@ -113,30 +110,6 @@ get_header();
 <div class="clearfix"></div>
 <!-- Container
 ======================================================================== -->
-<div class="blog-filter-container">
-	<div class="row">
-		<div class="col-md-12 blog-filer">
-			<ul>
-				<li class="active">
-					<a href="<?php if( get_option( 'show_on_front' ) == 'page' ) echo get_permalink( get_option('page_for_posts' ) );
-else echo bloginfo('url'); ?>">
-						<?php _e('All','oneengine') ?>
-					</a>
-				</li>
-				<?php
-					$categories = get_categories( array('hide_empty' => 0) );
-					foreach ($categories as $category) {
-				?>
-				<li>
-					<a href="<?php echo get_category_link( $category );?>">
-						<?php echo $category->name ?>
-					</a>
-				</li>
-				<?php } ?>
-			</ul>
-		</div>
-	</div>
-</div>
 <div class="site-inner">
     <div class="wrap">
     	<div class="container">
