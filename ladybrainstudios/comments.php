@@ -1,75 +1,41 @@
-<?php
-/**
- * The template for displaying comments.
- *
- * The area of the page that contains both current comments
- * and the comment form.
- *
- * @package Moesia
- */
-
+<?php 
 /*
- * If the current post is protected by a password and
- * the visitor has not yet entered the password we will
- * return early without loading the comments.
+ * If the current post is protected by a password and the visitor has not yet
+ * entered the password we will return early without loading the comments.
  */
-if ( post_password_required() ) {
+if ( post_password_required() )
 	return;
-}
 ?>
 
-<div id="comments" class="comments-area">
 
-	<?php // You can start editing here -- including this comment! ?>
+<div id="comments" class="oe-comments-area">
+	<h2 class="oe-comments-title">
+		<?php comments_number( __('Be the first to post a comment.','oneengine'), __('1 Comment on this article','oneengine') , __('% Comments on this article','oneengine') ); ?>
+	</h2>
+	<ul class="oe-comment-list">
+		<?php 
+			wp_list_comments(array(
+				'type' 			=> 'comment',
+				'callback' 		=> 'oe_comment_template',
+				'avatar_size' 	=> 40,
+				'reply_text'	=> __('<i class="fa fa-share-square-o"></i> ','oneengine').'<span class="icon" data-icon="R"></span>', 
+			)) 
+		?>
+		<div class="comments-navigation">
+		<?php 
+			paginate_comments_links();
+		?> 
+		</div>
+	</ul>
+</div>
 
-	<?php if ( have_comments() ) : ?>
-		<h2 class="comments-title">
-			<?php
-				printf( _nx( 'One thought on &ldquo;%2$s&rdquo;', '%1$s thoughts on &ldquo;%2$s&rdquo;', get_comments_number(), 'comments title', 'moesia' ),
-					number_format_i18n( get_comments_number() ), '<span>' . get_the_title() . '</span>' );
-			?>
-		</h2>
 
-		<?php if ( get_comment_pages_count() > 1 && get_option( 'page_comments' ) ) : // are there comments to navigate through ?>
-		<nav id="comment-nav-above" class="comment-navigation" role="navigation">
-			<h1 class="screen-reader-text"><?php _e( 'Comment navigation', 'moesia' ); ?></h1>
-			<div class="nav-previous"><?php previous_comments_link( __( '&larr; Older Comments', 'moesia' ) ); ?></div>
-			<div class="nav-next"><?php next_comments_link( __( 'Newer Comments &rarr;', 'moesia' ) ); ?></div>
-		</nav><!-- #comment-nav-above -->
-		<?php endif; // check for comment navigation ?>
-
-		<ol class="comment-list">
-			<?php
-				wp_list_comments( array(
-					'style'      => 'ol',
-					'short_ping' => true,
-					'avatar_size'=> 60,
-				) );
-			?>
-		</ol><!-- .comment-list -->
-
-		<?php if ( get_comment_pages_count() > 1 && get_option( 'page_comments' ) ) : // are there comments to navigate through ?>
-		<nav id="comment-nav-below" class="comment-navigation" role="navigation">
-			<h1 class="screen-reader-text"><?php _e( 'Comment navigation', 'moesia' ); ?></h1>
-			<div class="nav-previous"><?php previous_comments_link( __( '&larr; Older Comments', 'moesia' ) ); ?></div>
-			<div class="nav-next"><?php next_comments_link( __( 'Newer Comments &rarr;', 'moesia' ) ); ?></div>
-		</nav><!-- #comment-nav-below -->
-		<?php endif; // check for comment navigation ?>
-
-	<?php endif; // have_comments() ?>
-
-	<?php
-		// If comments are closed and there are comments, let's leave a little note, shall we?
-		if ( ! comments_open() && '0' != get_comments_number() && post_type_supports( get_post_type(), 'comments' ) ) :
-	?>
-		<p class="no-comments"><?php _e( 'Comments are closed.', 'moesia' ); ?></p>
-	<?php endif; ?>
-
-	<?php 
-		$args = array(
-			'comment_notes_after'  => '',
-		);
-		comment_form($args);
-	?>
-
-</div><!-- #comments -->
+<div id="et_respond">
+	<?php comment_form(array(
+		'title_reply' 			=> __('Leave a Comment', 'oneengine'),
+		'comment_notes_before' 	=> '<p class="before-text">'.__('Please be polite. We appreciate that.<br>Your email address will not be published and required fields are marked.', 'oneengine').'</p>',
+		'comment_notes_after' 	=> '',
+		'comment_field' =>  '<p class="comment-form-comment"><textarea id="comment" name="comment" cols="45" rows="8" aria-required="true" placeholder="'.__('Your content', 'oneengine').' *">' .
+    '</textarea></p>',
+	)); ?>
+</div>
