@@ -1472,9 +1472,8 @@ footer {
 }
 .social-footer li{
 	display: inline-block;
-	margin: 15px;
-	padding-right: 15px;
-	margin-left: 0;
+	margin: 15px 0;
+	padding: 0 15px;
 	border-right: 1px solid #fff;
 	font-size: 18px;
 }

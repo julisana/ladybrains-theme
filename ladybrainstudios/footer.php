@@ -84,7 +84,6 @@
                 <div class="col-md-12">
                     <div class="heading-title-wrapper" style="color">
                         <h2 class="title" <?php echo $css_title_color ?>><?php echo oneengine_option('footer_blog_title') ?></h2>
-                        <span class="line-title" style="background-color:#fff"></span>
                         <span class="sub-title" <?php echo $css_sub_title_color ?>><?php echo oneengine_option('footer_blog_subtitle') ?></span>
                     </div>
                 </div>
@@ -99,18 +98,18 @@
                         <?php } ?>
                     </div>
                     <div class="col-md-4">
-                        <?php if(oneengine_option('email_footer') != '') {?>
-                            <div class="contact-wrapper">
-                                <span class="icon"><i class="fa fa-envelope"></i></span>
-                                <p><?php echo nl2br(oneengine_option('email_footer')); ?></p>
-                            </div>
-                        <?php } ?>
-                    </div>
-                    <div class="col-md-4">
                         <?php if(oneengine_option('phone_footer') != '') {?>
                             <div class="contact-wrapper">
                                 <span class="icon"><i class="fa fa-phone"></i></span>
                                 <p><?php echo nl2br(oneengine_option('phone_footer')); ?></p>
+                            </div>
+                        <?php } ?>
+                    </div>
+                    <div class="col-md-4">
+                        <?php if(oneengine_option('email_footer') != '') {?>
+                            <div class="contact-wrapper">
+                                <span class="icon"><i class="fa fa-envelope"></i></span>
+                                <p><?php echo nl2br(oneengine_option('email_footer')); ?></p>
                             </div>
                         <?php } ?>
                     </div>
@@ -147,6 +146,9 @@
                 <?php if(oneengine_option('linkedin') != '') {?>
 				<li><a href="<?php echo oneengine_option('linkedin'); ?>"><i class="fa fa-linkedin"></i></a></li>
 				<?php } ?>
+                <?php if(oneengine_option('instagram') != '') {?>
+                <li><a href="<?php echo oneengine_option('instagram'); ?>"><i class="fa fa-instagram"></i></a></li>
+                <?php } ?>
 			</ul>
 			<div class="copyright">
 				<?php echo nl2br(oneengine_option('copyright')); ?>

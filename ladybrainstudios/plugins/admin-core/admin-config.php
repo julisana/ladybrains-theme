@@ -459,12 +459,12 @@ $sections[] = array(
 			'default' => '173A Nguyen Van Troi, Phu Nhuan, HCMC',
 			'title' => __('Type your address', 'oneengine'),
 		),
-		array(
+		/*array(
 			'id'=>'phone_footer',
 			'type' => 'text', 
 			'default' => '0988 11 22 33',
 			'title' => __('Type your phone', 'oneengine'),
-		),
+		),*/
 		array(
 			'id'=>'email_footer',
 			'type' => 'text', 
@@ -669,12 +669,20 @@ $sections[] = array(
 			'subtitle' => __('Insert your Flickr URL here.', 'oneengine'),
 			'desc' => "",
 			'default' => ""
-		),			
+		),
 		array(
 			'id'=>'linkedin',
 			'type' => 'text',      
 			'title' => __('Linkedin', 'oneengine'), 
 			'subtitle' => __('Insert your Linkedin URL here.', 'oneengine'),
+			'desc' => "",
+			'default' => ""
+		),
+		array(
+			'id'=>'instagram',
+			'type' => 'text',      
+			'title' => __('Instagram', 'oneengine'), 
+			'subtitle' => __('Insert your Instagram URL here.', 'oneengine'),
 			'desc' => "",
 			'default' => ""
 		),
