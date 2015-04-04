@@ -64,8 +64,51 @@
 	<![endif]-->
     <?php wp_head(); ?>
 </head>
-
-<body <?php body_class(); ?>>
+<?php
+    $color      = oneengine_option('header_blog_color'); 
+    $img        = oneengine_option('header_blog_img', false, 'url');
+    $repeat     = oneengine_option('header_blog_repeat');
+    $position   = oneengine_option('header_blog_position');
+    $parallax   = oneengine_option('header_blog_parallax');
+    $cover      = oneengine_option('header_blog_cover');
+    
+    $bg_repeat  = '';
+    if( $repeat == 1 || $repeat == true){
+        $bg_repeat = 'background-repeat:no-repeat;';
+    }else $bg_repeat = 'background-repeat:repeat;';
+    
+    $bg_cover = '';
+    if( $cover == 1 || $cover == true){
+        $bg_cover = 'background-size:cover;';
+    }else $bg_cover = '';
+    
+    $bg_img = '';
+    if( $img ){
+        $bg_img = 'background-image:url('.oneengine_option('header_blog_img', false, 'url').');';
+    }else $bg_img = '';
+    
+    $img        = ( ! empty ( $img ) )      ? ''.$bg_img.'' : '';
+    $color      = ( ! empty ( $color ) )    ? 'background-color:'. $color .';' : '';
+    $repeat     = ( ! empty ( $repeat ) )   ? ''. $bg_repeat .'' : '';
+    $position   = ( ! empty ( $position ) ) ? 'background-position:'. $position .';' : '';
+    $cover      = ( ! empty ( $cover ) )    ? ''. $bg_cover .'' : '';
+    $parallax   = ( ! empty ( $parallax ) ) ? 'background-attachment: fixed;': '';
+    
+    
+    /** Style Container */
+    $style = ( 
+        ! empty( $img ) ||
+        ! empty( $color ) || 
+        ! empty( $repeat ) ||
+        ! empty( $cover ) ||
+        ! empty( $parallax ) ) ? 
+            sprintf( '%s %s %s %s %s', $img, $color, $repeat, $cover, $parallax ) : '';
+    $css = '';
+    if ( ! empty( $style ) ) {          
+        $css = 'style="'. $style .'" ';
+    }
+?>
+<body <?php body_class(); ?> <?php echo $css ?>>
 	<!-- Preloading
     ======================================================================== -->
 	<div class="mask-color">
@@ -77,7 +120,6 @@
         </div>
     </div>
 	<!-- Preloading / End -->
-    <?php //if( is_front_page() ){ ?>
     <!-- Slider
     ======================================================================== -->
     <div class="slider-wrapper">
@@ -87,51 +129,8 @@
     
     <!-- Header
     ======================================================================== -->
-    <?php 
-        $color      = oneengine_option('header_blog_color'); 
-        $img        = oneengine_option('header_blog_img', false, 'url');
-        $repeat     = oneengine_option('header_blog_repeat');
-        $position   = oneengine_option('header_blog_position');
-        $parallax   = oneengine_option('header_blog_parallax');
-        $cover      = oneengine_option('header_blog_cover');
-        
-        $bg_repeat  = '';
-        if( $repeat == 1 || $repeat == true){
-            $bg_repeat = 'background-repeat:no-repeat;';
-        }else $bg_repeat = 'background-repeat:repeat;';
-        
-        $bg_cover = '';
-        if( $cover == 1 || $cover == true){
-            $bg_cover = 'background-size:cover;';
-        }else $bg_cover = '';
-        
-        $bg_img = '';
-        if( $img ){
-            $bg_img = 'background-image:url('.oneengine_option('header_blog_img', false, 'url').');';
-        }else $bg_img = '';
-        
-        $img        = ( ! empty ( $img ) )      ? ''.$bg_img.'' : '';
-        $color      = ( ! empty ( $color ) )    ? 'background-color:'. $color .';' : '';
-        $repeat     = ( ! empty ( $repeat ) )   ? ''. $bg_repeat .'' : '';
-        $position   = ( ! empty ( $position ) ) ? 'background-position:'. $position .';' : '';
-        $cover      = ( ! empty ( $cover ) )    ? ''. $bg_cover .'' : '';
-        $parallax   = ( ! empty ( $parallax ) ) ? 'background-attachment: fixed;': '';
-        
-        
-        /** Style Container */
-        $style = ( 
-            ! empty( $img ) ||
-            ! empty( $color ) || 
-            ! empty( $repeat ) ||
-            ! empty( $cover ) ||
-            ! empty( $parallax ) ) ? 
-                sprintf( '%s %s %s %s %s', $img, $color, $repeat, $cover, $parallax ) : '';
-        $css = '';
-        if ( ! empty( $style ) ) {          
-            $css = 'style="'. $style .'" ';
-        }
-    ?>
-    <header id="header" <?php echo $css ?>>
+
+    <header id="header">
     	<div class="container" >
         	<div class="row">
             	<div class="col-md-3 col-xs-3"></div>
@@ -155,13 +154,15 @@
                               ));      
                           ?>
                     </nav>
-                    <!-- Menu / End -->
-                    
-                    <nav class="menu-responsive"> 
-                    </nav>
                 </div>
         	</div> <!-- row -->
+        </div>
+    </header>
+	<!-- Header / End -->
 
+    <div class="blog-header-wrapper">
+        <div class="blog-header-img"></div>
+        <div class="container">
             <div class="row">
                 <div class="col-md-12"></div>
                 
@@ -218,10 +219,7 @@
                 </div>
             </div>
         </div>
-    </header>
-	<!-- Header / End -->
-
-	<?php //} //is_front_page ?>
+    </div>
 
 <!-- End Blog Header -->
 <div class="clearfix"></div>

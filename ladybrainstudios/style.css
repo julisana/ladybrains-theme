@@ -1239,8 +1239,10 @@ ul.portfolio-category li a:hover span.icon-categories i, ul.portfolio-category l
 /* ---------------------------------------- */
 header{
 	width:100%;
-	position:relative;
-	border-bottom:1px solid #bdc3c7;
+	position:fixed;
+	background-color:rgba(0,0,0,0.5);
+	border-bottom:1px solid #666;
+	z-index:999;
 }
 /* --------- MENU -------- */
 #main-menu-top{
@@ -1269,12 +1271,12 @@ header{
 #main-menu-top .main-menu li a:hover, #main-menu-top .main-menu li a.active{
 	border-bottom-color:#ccc;
 }
-#header.stuck-sticky {
+/*#header.stuck-sticky {
 	position: fixed;
 	top: 0;
 	background: #fff;
 	z-index: 999;
-}
+}*/
 /* --------- LOGO -------- */
 .logo{
 	position:relative;
@@ -1453,6 +1455,7 @@ header{
 footer {
 	padding:50px 0;
 	position:relative;
+	border-top:1px solid #666;
 }
 .footer-img{
 	width: 100%;

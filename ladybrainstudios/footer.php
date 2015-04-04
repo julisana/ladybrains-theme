@@ -16,6 +16,7 @@
 			$color		= oneengine_option('footer_blog_color'); 
 			$img		= oneengine_option('footer_blog_img', false, 'url');
 			$repeat		= oneengine_option('footer_blog_repeat');
+            $opacity    = oneengine_option('footer_blog_opacity');
 			$parallax	= oneengine_option('footer_blog_parallax');
 			$cover		= oneengine_option('footer_blog_cover'); 
 			
@@ -33,9 +34,14 @@
 			if( $img ){
 				$bg_img = 'background-image:url('.$img.');';
 			}else $bg_img = '';
+
+            if ( $opacity ) {}
+            else {
+                $opacity = 1;
+            }
 			
 			$img		= ( ! empty ( $img ) ) 		? ''.$bg_img.'' : '';
-			$color		= ( ! empty ( $color ) )  	? 'background-color:'. $color .';' : '';
+			$color		= ( ! empty ( $color ) )  	? 'background-color:rgba('. hex2rgb($color) .',' . $opacity . ');' : '';
 			$repeat		= ( ! empty ( $repeat ) ) 	? ''. $bg_repeat .'' : '';
 			$cover		= ( ! empty ( $cover ) ) 	? ''. $bg_cover .'' : '';
 			$parallax 	= ( ! empty ( $parallax ) ) ? 'background-attachment: fixed;': '';
@@ -51,7 +57,7 @@
 					sprintf( '%s %s %s %s %s', $img, $color, $repeat, $cover, $parallax ) : '';
 			$css = '';
 			if ( ! empty( $style ) ) {			
-				$css = 'style="'. $style .'" ';
+				$css = 'style="'. trim($style) .'"';
 			}
         ?>
         <div class="footer-img" <?php echo $css ?>></div>
@@ -98,12 +104,39 @@
                         <?php } ?>
                     </div>
                     <div class="col-md-4">
-                        <?php if(oneengine_option('phone_footer') != '') {?>
-                            <div class="contact-wrapper">
-                                <span class="icon"><i class="fa fa-phone"></i></span>
-                                <p><?php echo nl2br(oneengine_option('phone_footer')); ?></p>
-                            </div>
-                        <?php } ?>
+                        <div class="site-info">
+                            <ul class="social-footer">
+                                <?php if(oneengine_option('facebook') != '') {?>
+                                <li><a href="<?php echo oneengine_option('facebook'); ?>"><i class="fa fa-facebook"></i></a></li>
+                                <?php } ?>
+                                <?php if(oneengine_option('twitter') != '') {?>
+                                <li><a href="<?php echo oneengine_option('twitter'); ?>"><i class="fa fa-twitter"></i></a></li>
+                                <?php } ?>
+                                <?php if(oneengine_option('dribbble') != '') {?>
+                                <li><a href="<?php echo oneengine_option('dribbble'); ?>"><i class="fa fa-dribbble"></i></a></li>
+                                <?php } ?>
+                                <?php if(oneengine_option('google_plus') != '') {?>
+                                <li><a href="<?php echo oneengine_option('google_plus'); ?>"><i class="fa fa-google-plus"></i></a></li>
+                                <?php } ?>
+                                <?php if(oneengine_option('pinterest') != '') {?>
+                                <li><a href="<?php echo oneengine_option('pinterest'); ?>"><i class="fa fa-pinterest"></i></a></li>
+                                <?php } ?>
+                                <?php if(oneengine_option('flickr') != '') {?>
+                                <li><a href="<?php echo oneengine_option('flickr'); ?>"><i class="fa fa-flickr"></i></a></li>
+                                <?php } ?>
+                                <?php if(oneengine_option('linkedin') != '') {?>
+                                <li><a href="<?php echo oneengine_option('linkedin'); ?>"><i class="fa fa-linkedin"></i></a></li>
+                                <?php } ?>
+                                <?php if(oneengine_option('instagram') != '') {?>
+                                <li><a href="<?php echo oneengine_option('instagram'); ?>"><i class="fa fa-instagram"></i></a></li>
+                                <?php } ?>
+                            </ul>
+                            <div class="copyright">
+                                <?php echo nl2br(oneengine_option('copyright')); ?>
+                                <!--<br>
+                                <a href="http://www.enginethemes.com/themes/oneengine" target="_blank">One page WordPress theme</a>. Designed by <a href="http://www.enginethemes.com"  target="_blank">EngineThemes</a>.-->
+                            </div>          
+                        </div><!-- .site-info -->
                     </div>
                     <div class="col-md-4">
                         <?php if(oneengine_option('email_footer') != '') {?>
@@ -123,39 +156,6 @@
                 <?php } ?>
             </div>
         </div>
-		<div class="site-info">
-			<ul class="social-footer">
-				<?php if(oneengine_option('facebook') != '') {?>
-				<li><a href="<?php echo oneengine_option('facebook'); ?>"><i class="fa fa-facebook"></i></a></li>
-				<?php } ?>
-				<?php if(oneengine_option('twitter') != '') {?>
-				<li><a href="<?php echo oneengine_option('twitter'); ?>"><i class="fa fa-twitter"></i></a></li>
-				<?php } ?>
-				<?php if(oneengine_option('dribbble') != '') {?>
-				<li><a href="<?php echo oneengine_option('dribbble'); ?>"><i class="fa fa-dribbble"></i></a></li>
-				<?php } ?>
-                <?php if(oneengine_option('google_plus') != '') {?>
-				<li><a href="<?php echo oneengine_option('google_plus'); ?>"><i class="fa fa-google-plus"></i></a></li>
-				<?php } ?>
-                <?php if(oneengine_option('pinterest') != '') {?>
-				<li><a href="<?php echo oneengine_option('pinterest'); ?>"><i class="fa fa-pinterest"></i></a></li>
-				<?php } ?>
-                <?php if(oneengine_option('flickr') != '') {?>
-				<li><a href="<?php echo oneengine_option('flickr'); ?>"><i class="fa fa-flickr"></i></a></li>
-				<?php } ?>
-                <?php if(oneengine_option('linkedin') != '') {?>
-				<li><a href="<?php echo oneengine_option('linkedin'); ?>"><i class="fa fa-linkedin"></i></a></li>
-				<?php } ?>
-                <?php if(oneengine_option('instagram') != '') {?>
-                <li><a href="<?php echo oneengine_option('instagram'); ?>"><i class="fa fa-instagram"></i></a></li>
-                <?php } ?>
-			</ul>
-			<div class="copyright">
-				<?php echo nl2br(oneengine_option('copyright')); ?>
-				<br>
-				<!--<a href="http://www.enginethemes.com/themes/oneengine" target="_blank">One page WordPress theme</a>. Designed by <a href="http://www.enginethemes.com"  target="_blank">EngineThemes</a>.-->
-			</div>			
-		</div><!-- .site-info -->
 	</footer><!-- #colophon -->
 	<?php } ?>
 </div><!-- #page -->
