@@ -182,7 +182,7 @@ class OneEngine{
 			)
 		);		
 		
-		$s_labels = array(
+		/*$s_labels = array(
 			'name'               => _x( 'Sliders', 'post type general name', 'oneengine' ),
 			'singular_name'      => _x( 'Slider', 'post type singular name', 'oneengine' ),
 			'menu_name'          => _x( 'Sliders', 'admin menu', 'oneengine' ),
@@ -282,7 +282,7 @@ class OneEngine{
 			'supports'           => array( 'title', 'editor', 'author', 'thumbnail', 'excerpt', 'comments' )
 		);
 
-		register_post_type( 'testimonial', $test_args );	
+		register_post_type( 'testimonial', $test_args );
 
 		$t_labels = array(
 			'name'               => _x( 'Teams', 'post type general name', 'oneengine' ),
@@ -316,7 +316,7 @@ class OneEngine{
 			'supports'           => array( 'title','thumbnail')
 		);
 
-		register_post_type( 'team', $t_args );	
+		register_post_type( 'team', $t_args );
 
 		$tax_labels = array(
 			'name'              => _x( 'Categories', 'taxonomy general name' ),
@@ -341,7 +341,7 @@ class OneEngine{
 			'rewrite'           => array( 'slug' => 'portfolio-cat' ),
 		);
 
-		register_taxonomy( 'portfolio_cat', array( 'portfolio' ), $tax_args );	
+		register_taxonomy( 'portfolio_cat', array( 'portfolio' ), $tax_args );
 
 		/*-----------------------------------------------------------------------------------*/
 		/*	Register Images Size

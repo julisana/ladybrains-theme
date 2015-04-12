@@ -1918,7 +1918,7 @@ if( !class_exists( 'ReduxFramework' ) ) {
 
                         // Check fields that hae no default value, but an options value with settings to
                         // be saved by default
-                        } elseif ( !isset( $this->options[$field['id']] ) && isset( $field['options'] )) {
+                        } elseif ( empty( $this->options[$field['id']] ) && isset( $field['options'] )) {
 
                             // If sorter field, check for options as save them as defaults
                             if ($field['type'] == 'sorter' || $field['type'] == 'sortable') {
@@ -2871,13 +2871,8 @@ if( !class_exists( 'ReduxFramework' ) ) {
                     ob_start();
                     /** @noinspection PhpUndefinedMethodInspection */
                     $render->render();
-                    /*
 
-                    echo "<pre>";
-                    print_r($value);
-                    echo "</pre>";
-                    */
-                       /**
+                    /**
                      * filter 'redux-field-{opt_name}'
                      * @deprecated
                      * @param string        rendered field markup

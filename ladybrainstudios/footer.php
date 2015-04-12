@@ -12,6 +12,7 @@
 	<div class="clearfix"></div>
 	<?php if(is_front_page()){ ?>
 	<footer id="contact" class="site-footer template-wrap" role="contentinfo">
+        <a name="contact"></a>
 		<?php 
 			$color		= oneengine_option('footer_blog_color'); 
 			$img		= oneengine_option('footer_blog_img', false, 'url');

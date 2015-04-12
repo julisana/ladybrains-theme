@@ -4,16 +4,15 @@ function admin_change_default_texts(){
 	return __('You can copy/download your current options settings. This is a backup solution in case anything goes wrong.', 'oneengine');
 }
 /**
-	ReduxFramework Sample Config File
-	For full documentation, please visit http://reduxframework.com/docs/
+ *	ReduxFramework Sample Config File
+ *	For full documentation, please visit http://reduxframework.com/docs/
 **/
 
 
 /** 
-	Most of your editing will be done in this section.
-	Here you can override default values, uncomment args and change their values.
-	No $args are required, but they can be overridden if needed.
-	
+ *	Most of your editing will be done in this section.
+ *	Here you can override default values, uncomment args and change their values.
+ *	No $args are required, but they can be overridden if needed.
 **/
 $args = array();
 
@@ -73,8 +72,6 @@ $args['page_icon'] = 'icon-themes';
 
 // Declare sections array
 $sections = array();
-
-
 
 // General -------------------------------------------------------------------------- >	
 $sections[] = array(
@@ -250,7 +247,6 @@ $sections[] = array(
 		),
 );
 
-
 // Styling -------------------------------------------------------------------------- >	
 $sections[] = array(
 	'icon' => 'el-icon-brush',
@@ -277,6 +273,30 @@ $sections[] = array(
 			'default' => '#e8432e',
 			'transparent'=>false,
 			'validate' => 'color',
+		),
+	)
+);
+
+// Pages -------------------------------------------------------------------------- >
+$pageList = get_pages();
+$pages = [];
+foreach ($pageList as $page) {
+	$pages[$page->ID] = __($page->post_name, 'oneengine');
+}
+$sections[] = array(
+	'icon' => 'el-icon-file',
+	'icon_class' => 'el-icon-large',
+	'title' => __('Page Settings', 'oneengine'),
+	'submenu' => true,
+	'fields' => array(
+
+		array(
+			'id'=>'page_select',
+			'mode' => 'checkbox',
+			'title' => __('Select Pages to Display on the Homepage', 'oneengine'),
+			'options' => $pages,
+			'type' => 'sortable',
+			//'subtitle' => __('Ex:560(px)', 'oneengine'),
 		),
 	)
 );
